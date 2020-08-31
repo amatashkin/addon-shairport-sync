@@ -9,6 +9,7 @@ declare metadata_pipe
 if bashio::config.has_value 'pipe'; then
     pipe=$(bashio::config 'pipe')
     {
+        echo ""
         echo "pipe ="
         echo "{"
         echo "  name = \"${pipe}\""
@@ -19,6 +20,7 @@ fi
 if bashio::config.has_value 'metadata_pipe'; then
     pipe=$(bashio::config 'metadata_pipe')
     {
+        echo ""
         echo "metadata ="
         echo "{"
         echo "	enabled = \"yes\";"

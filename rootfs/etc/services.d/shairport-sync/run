@@ -14,7 +14,6 @@ s6-svwait -u -t 5000 /var/run/s6/services/avahi
 sleep 5
 
 declare -a options
-bashio::log.info 'Starting the Shairport Sync...'
 
 # Run with avahi
 options+=(-m avahi)
@@ -29,7 +28,7 @@ fi
 # Set pipe backend if provided
 if bashio::config.has_value 'pipe'; then
     bashio::log.info 'Adding pipe backend...'
-    options+=(--output=$(bashio::config 'pipe'))
+    options+=(--output=pipe)
 fi
 
 # Are we running in debug mode?
@@ -38,4 +37,6 @@ if bashio::debug; then
 fi
 
 # Run shairport-sync
+bashio::log.info 'Starting the Shairport Sync...'
+bashio::log.info "with options: ${options[@]}"
 exec shairport-sync "${options[@]}"
